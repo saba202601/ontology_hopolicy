@@ -1,0 +1,188 @@
+{
+  "version": "1.0.0",
+  "jurisdiction": "FL",
+  "fictional": true,
+  "homeowner": "Alex Morgan",
+  "property": "Fictional owner-occupied Florida single-family home",
+  "policy_id": "DEMO-FL-001",
+  "form": "HO-3 style illustration; no carrier form supplied",
+  "effective": "2026-10-01",
+  "expiration": "2027-10-01",
+  "coverage": [
+    {
+      "id": "COV-A",
+      "code": "A",
+      "label": "Dwelling",
+      "limit": 400000,
+      "basis": "Replacement cost assumed; policy conditions apply"
+    },
+    {
+      "id": "COV-B",
+      "code": "B",
+      "label": "Other structures",
+      "limit": 40000,
+      "basis": "Illustrative selected limit"
+    },
+    {
+      "id": "COV-C",
+      "code": "C",
+      "label": "Personal property",
+      "limit": 200000,
+      "basis": "Actual cash value assumed; endorsement not confirmed"
+    },
+    {
+      "id": "COV-D",
+      "code": "D",
+      "label": "Loss of use",
+      "limit": 80000,
+      "basis": "Covered loss and policy conditions required"
+    },
+    {
+      "id": "COV-E",
+      "code": "E",
+      "label": "Personal liability",
+      "limit": 300000,
+      "basis": "Per occurrence assumed"
+    },
+    {
+      "id": "COV-F",
+      "code": "F",
+      "label": "Medical payments to others",
+      "limit": 5000,
+      "basis": "Per person assumed"
+    }
+  ],
+  "hurricane_rate": 0.02,
+  "aop_deductible": 2500,
+  "flood_status": "Not included in this demo homeowners policy",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Florida DFS homeowners insurance overview",
+      "url": "https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview",
+      "accessed": "2026-09-30"
+    },
+    {
+      "id": "S2",
+      "title": "Florida DFS hurricane deductible",
+      "url": "https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible",
+      "accessed": "2026-09-30"
+    }
+  ],
+  "classes": [
+    {
+      "id": "Homeowner",
+      "definition": "Person named in the demonstration policy"
+    },
+    {
+      "id": "Property",
+      "definition": "Insured dwelling and its location"
+    },
+    {
+      "id": "Policy",
+      "definition": "Contract with effective dates and linked forms"
+    },
+    {
+      "id": "Coverage",
+      "definition": "Insuring agreement and its monetary limit"
+    },
+    {
+      "id": "Deductible",
+      "definition": "Insured share with amount, basis and application"
+    },
+    {
+      "id": "Peril",
+      "definition": "Cause of loss; separate from coverage"
+    },
+    {
+      "id": "Exclusion",
+      "definition": "Policy provision removing or restricting coverage"
+    },
+    {
+      "id": "Endorsement",
+      "definition": "Form modifying policy terms"
+    },
+    {
+      "id": "ClaimScenario",
+      "definition": "Hypothetical event, not a coverage determination"
+    },
+    {
+      "id": "Source",
+      "definition": "Evidence for a statement or rule"
+    },
+    {
+      "id": "ReviewItem",
+      "definition": "Unresolved question requiring policy evidence"
+    }
+  ],
+  "relations": [
+    {
+      "domain": "Policy",
+      "predicate": "hasInsured",
+      "range": "Homeowner",
+      "cardinality": "1..*"
+    },
+    {
+      "domain": "Policy",
+      "predicate": "insures",
+      "range": "Property",
+      "cardinality": "1..*"
+    },
+    {
+      "domain": "Policy",
+      "predicate": "hasCoverage",
+      "range": "Coverage",
+      "cardinality": "1..*"
+    },
+    {
+      "domain": "Policy",
+      "predicate": "hasDeductible",
+      "range": "Deductible",
+      "cardinality": "0..*"
+    },
+    {
+      "domain": "Policy",
+      "predicate": "hasEndorsement",
+      "range": "Endorsement",
+      "cardinality": "0..*"
+    },
+    {
+      "domain": "Policy",
+      "predicate": "hasExclusion",
+      "range": "Exclusion",
+      "cardinality": "0..*"
+    },
+    {
+      "domain": "ClaimScenario",
+      "predicate": "affects",
+      "range": "Property",
+      "cardinality": "1"
+    },
+    {
+      "domain": "ClaimScenario",
+      "predicate": "causedBy",
+      "range": "Peril",
+      "cardinality": "1..*"
+    },
+    {
+      "domain": "Deductible",
+      "predicate": "appliesTo",
+      "range": "Peril",
+      "cardinality": "1..*"
+    },
+    {
+      "domain": "ReviewItem",
+      "predicate": "supportedBy",
+      "range": "Source",
+      "cardinality": "0..*"
+    }
+  ],
+  "review_items": [
+    "Confirm wind coverage and all endorsements.",
+    "Obtain a current rebuilding-cost estimate.",
+    "Discuss separate flood coverage.",
+    "Confirm roof settlement terms and any roof deductible.",
+    "Confirm personal-property replacement-cost endorsement.",
+    "Verify prior hurricane deductible credit with insurer."
+  ]
+}

@@ -1,0 +1,42 @@
+@prefix demo: <https://example.org/fl-homeowners/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+demo:ontology a owl:Ontology .
+demo:Homeowner a owl:Class ; rdfs:comment "Person named in the demonstration policy" .
+demo:Property a owl:Class ; rdfs:comment "Insured dwelling and its location" .
+demo:Policy a owl:Class ; rdfs:comment "Contract with effective dates and linked forms" .
+demo:Coverage a owl:Class ; rdfs:comment "Insuring agreement and its monetary limit" .
+demo:Deductible a owl:Class ; rdfs:comment "Insured share with amount, basis and application" .
+demo:Peril a owl:Class ; rdfs:comment "Cause of loss; separate from coverage" .
+demo:Exclusion a owl:Class ; rdfs:comment "Policy provision removing or restricting coverage" .
+demo:Endorsement a owl:Class ; rdfs:comment "Form modifying policy terms" .
+demo:ClaimScenario a owl:Class ; rdfs:comment "Hypothetical event, not a coverage determination" .
+demo:Source a owl:Class ; rdfs:comment "Evidence for a statement or rule" .
+demo:ReviewItem a owl:Class ; rdfs:comment "Unresolved question requiring policy evidence" .
+demo:hasInsured a owl:ObjectProperty ; rdfs:domain demo:Policy ; rdfs:range demo:Homeowner .
+demo:insures a owl:ObjectProperty ; rdfs:domain demo:Policy ; rdfs:range demo:Property .
+demo:hasCoverage a owl:ObjectProperty ; rdfs:domain demo:Policy ; rdfs:range demo:Coverage .
+demo:hasDeductible a owl:ObjectProperty ; rdfs:domain demo:Policy ; rdfs:range demo:Deductible .
+demo:hasEndorsement a owl:ObjectProperty ; rdfs:domain demo:Policy ; rdfs:range demo:Endorsement .
+demo:hasExclusion a owl:ObjectProperty ; rdfs:domain demo:Policy ; rdfs:range demo:Exclusion .
+demo:affects a owl:ObjectProperty ; rdfs:domain demo:ClaimScenario ; rdfs:range demo:Property .
+demo:causedBy a owl:ObjectProperty ; rdfs:domain demo:ClaimScenario ; rdfs:range demo:Peril .
+demo:appliesTo a owl:ObjectProperty ; rdfs:domain demo:Deductible ; rdfs:range demo:Peril .
+demo:supportedBy a owl:ObjectProperty ; rdfs:domain demo:ReviewItem ; rdfs:range demo:Source .
+demo:limit a owl:DatatypeProperty ; rdfs:domain demo:Coverage ; rdfs:range xsd:decimal .
+demo:alex a demo:Homeowner .
+demo:home a demo:Property .
+demo:policy a demo:Policy ; demo:hasInsured demo:alex ; demo:insures demo:home .
+demo:COV-A a demo:Coverage ; rdfs:label "Dwelling" ; demo:limit "400000"^^xsd:decimal .
+demo:policy demo:hasCoverage demo:COV-A .
+demo:COV-B a demo:Coverage ; rdfs:label "Other structures" ; demo:limit "40000"^^xsd:decimal .
+demo:policy demo:hasCoverage demo:COV-B .
+demo:COV-C a demo:Coverage ; rdfs:label "Personal property" ; demo:limit "200000"^^xsd:decimal .
+demo:policy demo:hasCoverage demo:COV-C .
+demo:COV-D a demo:Coverage ; rdfs:label "Loss of use" ; demo:limit "80000"^^xsd:decimal .
+demo:policy demo:hasCoverage demo:COV-D .
+demo:COV-E a demo:Coverage ; rdfs:label "Personal liability" ; demo:limit "300000"^^xsd:decimal .
+demo:policy demo:hasCoverage demo:COV-E .
+demo:COV-F a demo:Coverage ; rdfs:label "Medical payments to others" ; demo:limit "5000"^^xsd:decimal .
+demo:policy demo:hasCoverage demo:COV-F .
